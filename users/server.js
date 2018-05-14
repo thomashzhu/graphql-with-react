@@ -8,7 +8,7 @@ app.use('/graphql', expressGraphQL({
   graphiql: true,
 }));
 
-const PORT = 4000; // process.env.PORT
+const PORT = 4000; // process.env.PORT || 3000
 
 app.listen(PORT, process.env.IP, () => {
   console.log(`Server has started on port ${PORT}!`);
