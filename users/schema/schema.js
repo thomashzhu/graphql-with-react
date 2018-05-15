@@ -1,5 +1,6 @@
 const graphql = require('graphql');
 const axios = require('axios');
+const _ = require('lodash');
 
 const {
   GraphQLInt,
@@ -80,6 +81,19 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { firstName, age }) {
         return axios.post('http://localhost:3000/users', { firstName, age })
+          .then(response => response.data);
+      },
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        firstName: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        companyId: { type: GraphQLString },
+      },
+      resolve(parentValue, { id, ...args }) {
+        return axios.patch(`http://localhost:3000/users/${id}`, args)
           .then(response => response.data);
       },
     },
