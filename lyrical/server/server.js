@@ -1,14 +1,16 @@
-const express = require('express');
-const models = require('./models');
+const app = require('express')();
+require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
 
-const app = express();
+const mongodb = require('./private/mongodb');
+
+const { user, password } = mongodb;
 
 // Replace with your mongoLab URI
-const MONGO_URI = '';
+const MONGO_URI = `mongodb://${user}:${password}@ds123790.mlab.com:23790/tz-lyrical`;
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI');
 }
@@ -16,18 +18,19 @@ if (!MONGO_URI) {
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URI);
 mongoose.connection
-    .once('open', () => console.log('Connected to MongoLab instance.'))
-    .on('error', error => console.log('Error connecting to MongoLab:', error));
+  .once('open', () => console.log('Connected to MongoLab instance.'))
+  .on('error', error => console.log('Error connecting to MongoLab:', error));
 
 app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
   schema,
-  graphiql: true
+  graphiql: true,
 }));
 
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config.js');
+
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
 module.exports = app;
