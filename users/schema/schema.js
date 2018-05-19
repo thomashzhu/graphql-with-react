@@ -1,6 +1,5 @@
 const graphql = require('graphql');
 const axios = require('axios');
-const _ = require('lodash');
 
 const {
   GraphQLInt,
