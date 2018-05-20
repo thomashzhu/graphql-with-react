@@ -15,7 +15,10 @@ class SongList extends Component {
     const { data: { songs } } = this.props;
 
     return songs.map(song => (
-      <li key={song.id}>
+      <li
+        className="collection-item"
+        key={song.id}
+      >
         {song.title}
       </li>
     ));
@@ -27,9 +30,9 @@ class SongList extends Component {
     }
 
     return (
-      <div>
+      <ul className="collection">
         {this.renderSongs()}
-      </div>
+      </ul>
     );
   }
 }
