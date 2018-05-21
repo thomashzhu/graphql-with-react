@@ -26,7 +26,7 @@ const Root = () => (
 
         <Route
           component={SongCreate}
-          path="song/new"
+          path="songs/new"
         />
       </Route>
     </Router>
