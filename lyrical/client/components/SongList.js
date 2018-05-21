@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
+
+import query from '../queries/fetchSongs';
 
 class SongList extends Component {
   static propTypes = {
@@ -48,15 +49,4 @@ class SongList extends Component {
   }
 }
 
-export default (() => {
-  const songListQuery = gql`
-    query {
-      songs {
-        id
-        title
-      }
-    }
-  `;
-
-  return graphql(songListQuery)(SongList);
-})();
+export default graphql(query)(SongList);

@@ -7,6 +7,8 @@ import {
 } from 'react-router';
 import PropTypes from 'prop-types';
 
+import fetchSongsQuery from '../queries/fetchSongs';
+
 class SongCreate extends Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
@@ -24,6 +26,9 @@ class SongCreate extends Component {
         variables: {
           title: this.state.title,
         },
+        refetchQueries: [{
+          query: fetchSongsQuery,
+        }],
       });
 
       hashHistory.push('/');
