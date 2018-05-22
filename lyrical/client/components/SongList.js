@@ -4,7 +4,7 @@ import {
   graphql,
 } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import fetchSongsQuery from '../queries/fetchSongs';
@@ -42,7 +42,9 @@ class SongList extends Component {
         className="collection-item"
         key={id}
       >
-        {title}
+        <Link to={`/songs/${id}`}>
+          {title}
+        </Link>
 
         <i
           className="material-icons"
@@ -68,7 +70,6 @@ class SongList extends Component {
 
         <Link
           className="btn-floating btn-large red right"
-          href="/songs/new"
           to="/songs/new"
         >
           <i className="material-icons">add</i>

@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true,
+  endpointURL: '/graphql',
 }));
 
 const webpackMiddleware = require('webpack-dev-middleware');

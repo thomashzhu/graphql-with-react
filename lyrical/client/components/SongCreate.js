@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import {
-  hashHistory,
-  Link,
-} from 'react-router';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import fetchSongsQuery from '../queries/fetchSongs';
@@ -31,7 +28,7 @@ class SongCreate extends Component {
         }],
       });
 
-      hashHistory.push('/');
+      
     } catch (error) {
       console.log('error', error);
     }
@@ -40,10 +37,7 @@ class SongCreate extends Component {
   render() {
     return (
       <div>
-        <Link
-          href="/"
-          to="/"
-        >
+        <Link to="/">
           Back
         </Link>
 
