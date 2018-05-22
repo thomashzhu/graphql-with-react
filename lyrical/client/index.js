@@ -1,22 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloClient } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
 import { HashRouter } from 'react-router-dom';
 
+import ApolloProviderRoot from './components/ApolloProviderRoot';
 import App from './App';
 import './style/style.css';
 
-const client = new ApolloClient({
-  dataIdFromObject: object => object.id,
-});
-
 const Root = () => (
-  <ApolloProvider client={client}>
+  <ApolloProviderRoot>
     <HashRouter>
       <App />
     </HashRouter>
-  </ApolloProvider>
+  </ApolloProviderRoot>
 );
 
 ReactDOM.render(
