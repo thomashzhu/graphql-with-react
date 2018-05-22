@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import LyricCreate from './LyricCreate';
+
 const SongDetail = ({ data: { loading, song } }) => {
   if (loading) return null;
 
@@ -11,6 +13,7 @@ const SongDetail = ({ data: { loading, song } }) => {
     <div>
       <Link to="/">Back</Link>
       <h3>{song.title}</h3>
+      <LyricCreate songId={song.id} />
     </div>
   );
 };
