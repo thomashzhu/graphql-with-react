@@ -8,6 +8,9 @@ import fetchSongsQuery from '../queries/fetchSongs';
 
 class SongCreate extends Component {
   static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     mutate: PropTypes.func.isRequired,
   };
 
@@ -28,7 +31,7 @@ class SongCreate extends Component {
         }],
       });
 
-      
+      this.props.history.push('/');
     } catch (error) {
       console.log('error', error);
     }
@@ -61,6 +64,7 @@ export default (() => {
   const mutation = gql`
     mutation AddSong($title: String) {
       addSong(title: $title) {
+        id
         title
       }
     }
