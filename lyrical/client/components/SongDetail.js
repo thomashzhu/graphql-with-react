@@ -40,6 +40,7 @@ export default graphql(gql`
       title
       lyrics {
         id
+        likes
         content
       }
     }
