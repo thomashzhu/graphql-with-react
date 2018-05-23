@@ -7,9 +7,10 @@ import PropTypes from 'prop-types';
 import LyricCreate from './LyricCreate';
 import LyricList from './LyricList';
 
-const SongDetail = ({ data: { loading, song } }) => {
+const SongDetail = (props) => {
+  const { data: { loading, song } } = props;
   if (loading) return null;
-
+  
   return (
     <div>
       <Link to="/">Back</Link>
